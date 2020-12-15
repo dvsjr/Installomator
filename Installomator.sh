@@ -235,7 +235,7 @@ getAppVersion() {
         filteredAppPaths=( ${(M)appPathArray:#${targetDir}*} )
         if [[ ${#filteredAppPaths} -eq 1 ]]; then
             installedAppPath=$filteredAppPaths[1]
-            appversion=$(mdls -name kMDItemVersion -raw $installedAppPath )
+            appversion=$(defaults read $installedAppPath/Contents/Info CFBundleShortVersionString)
             printlog "found app at $installedAppPath, version $appversion"
         else
             printlog "could not determine location of $appName"
